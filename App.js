@@ -6,9 +6,17 @@ import { firebase } from "./config";
 
 //user defined components
 import Header from "./components/Header";
-import Login from "./Screens/Login";
-import Registration from "./Screens/Registration";
-import Dashboard from "./Screens/Dashboard";
+import JobSeekerLogin from "./Screens/JobSeeker/JobSeekerLogin";
+import JobSeekerRegistration from "./Screens/JobSeeker/JobSeekerRegistration";
+import JobSeekerHomeScreen from "./Screens/JobSeeker/JobSeekerHomeScreen";
+
+import EmployerLogin from "./Screens/Employer/EmployerLogin";
+import EmployerRegistration from "./Screens/Employer/EmployerRegistration";
+import EmployerHomeScreen from "./Screens/Employer/EmployerHomeScreen";
+import MainScreen from "./Screens/MainScreen";
+
+import AdminLogin from "./Screens/Admin/AdminLogin";
+import AdminHomeScreen from "./Screens/Admin/AdminHomeScreen";
 
 const Stack=createStackNavigator();
 
@@ -32,9 +40,26 @@ function App(){
   if(!user){
     return(
       <Stack.Navigator>
+
+        <Stack.Screen 
+        name="MainScreen" 
+        component={MainScreen}
+        options={{
+          headerTitle:()=> <Header name="Common Job Portals"/>,
+          headerStyle:{
+            height:150,
+            borderBottomLeftRadius:30,
+            borderBottomRightRadius:50,
+            backgroundColor:'#00e4d0',
+            shadowColor:'#000',
+            elevation:25
+          }
+        }}
+        />
+
         <Stack.Screen 
         name="Login" 
-        component={Login}
+        component={JobSeekerLogin}
         options={{
           headerTitle:()=> <Header name="Common Job Portals"/>,
           headerStyle:{
@@ -49,8 +74,8 @@ function App(){
         />
 
 <Stack.Screen 
-        name="Register" 
-        component={Registration}
+        name="Registration" 
+        component={JobSeekerRegistration}
         options={{
           headerTitle:()=> <Header name="Common Job Portals"/>,
           headerStyle:{
@@ -63,6 +88,90 @@ function App(){
           }
         }}
         />
+
+        {/* //employer Screen start */}
+        <Stack.Screen 
+        name="EmpLogin" 
+        component={EmployerLogin}
+        options={{
+          headerTitle:()=> <Header name="EmployerLogin"/>,
+          headerStyle:{
+            height:150,
+            borderBottomLeftRadius:30,
+            borderBottomRightRadius:50,
+            backgroundColor:'#00e4d0',
+            shadowColor:'#000',
+            elevation:25
+          }
+        }}
+        />
+
+        <Stack.Screen 
+        name="EmpReg" 
+        component={EmployerRegistration}
+        options={{
+          headerTitle:()=> <Header name="EmployerRegister"/>,
+          headerStyle:{
+            height:150,
+            borderBottomLeftRadius:30,
+            borderBottomRightRadius:50,
+            backgroundColor:'#00e4d0',
+            shadowColor:'#000',
+            elevation:25
+          }
+        }}
+        />
+
+      <Stack.Screen 
+        name="EmpHome" 
+        component={EmployerHomeScreen}
+        options={{
+          headerTitle:()=> <Header name="Employer Home"/>,
+          headerStyle:{
+            height:150,
+            borderBottomLeftRadius:30,
+            borderBottomRightRadius:50,
+            backgroundColor:'#00e4d0',
+            shadowColor:'#000',
+            elevation:25
+          }
+        }}
+        />
+
+        <Stack.Screen 
+        name="AdminLogin" 
+        component={AdminLogin}
+        options={{
+          headerTitle:()=> <Header name="Admin Login"/>,
+          headerStyle:{
+            height:150,
+            borderBottomLeftRadius:30,
+            borderBottomRightRadius:50,
+            backgroundColor:'#00e4d0',
+            shadowColor:'#000',
+            elevation:25
+          }
+        }}
+        />
+
+        <Stack.Screen 
+        name="AdminHome" 
+        component={AdminHomeScreen}
+        options={{
+          headerTitle:()=> <Header name="Admin Home"/>,
+          headerStyle:{
+            height:150,
+            borderBottomLeftRadius:30,
+            borderBottomRightRadius:50,
+            backgroundColor:'#00e4d0',
+            shadowColor:'#000',
+            elevation:25
+          }
+        }}
+        />
+
+
+
       </Stack.Navigator>
     )
   }
@@ -71,9 +180,9 @@ function App(){
     <Stack.Navigator>
       <Stack.Screen 
         name="Dashboard" 
-        component={Dashboard}
+        component={JobSeekerHomeScreen}
         options={{
-          headerTitle:()=> <Header name="Dashboard"/>,
+          headerTitle:()=> <Header name="JobSeekerHomeScreen"/>,
           headerStyle:{
             height:150,
             borderBottomLeftRadius:30,

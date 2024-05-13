@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import{View,Text,TouchableOpacity,TextInput,StyleSheet} from 'react-native'
 import { useNavigation } from '@react-navigation/native';
-import { firebase } from '../config';
-import { set } from 'firebase/database';
+import { firebase } from '../../config';
 
 
  export default function Login() {
-    const navigation=useNavigation();
-    const [email,setEmail]=useState('');
+    const navigation=useNavigation()
+    const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
   
     loginUser=async(email,password)=>{
@@ -20,7 +19,7 @@ import { set } from 'firebase/database';
     }
     return(
         <View style={styles.container}>
-            <Text style={{fontWeight:'bold',fontSize:26}}>Login</Text>
+            <Text style={{fontWeight:'bold',fontSize:26}}>JobSeekerLogin</Text>
             <View style={{marginTop:40}}>
                 <TextInput
                     style={styles.textInput}
@@ -48,11 +47,26 @@ import { set } from 'firebase/database';
             </TouchableOpacity>
 
             <TouchableOpacity
-                onPress={()=>loginUser(email,password)}
+                onPress={()=>navigation.navigate('Registration')}
                 style={{marginTop:20}}
             >
-                <Text style={{fontWeight:'bold',fontSize:16}}>Don't have an account?Register Now</Text>
+                <Text style={{fontWeight:'bold',fontSize:16}}>
+                    Don't have an account?Register Now
+                </Text>
+
+                <Text style={{fontWeight:'bold',fontSize:16}}
+                onPress={()=>navigation.navigate('EmpReg')}
+                >
+                    Employer Register
+                </Text>
+                <Text style={{fontWeight:'bold',fontSize:16}}
+                onPress={()=>navigation.navigate('EmpLogin')}
+                >
+                    Employer login
+                </Text>
             </TouchableOpacity>
+
+            
         </View>
     )
 }
@@ -82,7 +96,7 @@ const styles=StyleSheet.create({
         backgroundColor:'#026efd',
         alignItems:'center',
         justifyContent:'center',
-        borderRadius:50,
+        borderRadius:50
 
     }
     
