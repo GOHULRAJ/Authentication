@@ -16,6 +16,7 @@ export default function AdminLogin() {
 
     if (username === defaultUsername && password === defaultPassword && securityCode === defaultSecurityCode) {
       navigation.navigate('AdminHome'); // Assuming 'AdminHomeScreen' is the screen name for Admin Home
+      console.log('Login successful')
     } else {
       Alert.alert('Error', 'Invalid credentials. Please check your username, password, and security code.');
     }

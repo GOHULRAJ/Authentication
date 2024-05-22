@@ -2,10 +2,14 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useState,useEffect } from "react";
 import { firebase } from "./config";
+import 'react-native-gesture-handler';
 
 
 //user defined components
 import Header from "./components/Header";
+
+import MainScreen from "./Screens/MainScreen";
+
 import JobSeekerLogin from "./Screens/JobSeeker/JobSeekerLogin";
 import JobSeekerRegistration from "./Screens/JobSeeker/JobSeekerRegistration";
 import JobSeekerHomeScreen from "./Screens/JobSeeker/JobSeekerHomeScreen";
@@ -13,10 +17,16 @@ import JobSeekerHomeScreen from "./Screens/JobSeeker/JobSeekerHomeScreen";
 import EmployerLogin from "./Screens/Employer/EmployerLogin";
 import EmployerRegistration from "./Screens/Employer/EmployerRegistration";
 import EmployerHomeScreen from "./Screens/Employer/EmployerHomeScreen";
-import MainScreen from "./Screens/MainScreen";
+import PostJob from "./Screens/Employer/postJob";
+
 
 import AdminLogin from "./Screens/Admin/AdminLogin";
 import AdminHomeScreen from "./Screens/Admin/AdminHomeScreen";
+import ActiveJobsScreen from "./Screens/Admin/ActiveJobsScreen";
+import JobSeekerListScreen from "./Screens/Admin/JobSeekerListScreen";
+import EmployerListScreen from "./Screens/Admin/EmployerListScreen";
+import JobProfileScreen from "./Screens/JobSeeker/JobProfileScreen";
+
 
 const Stack=createStackNavigator();
 
@@ -39,7 +49,7 @@ function App(){
 
   if(!user){
     return(
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{headerShown:false}} > 
 
         <Stack.Screen 
         name="MainScreen" 
@@ -47,7 +57,7 @@ function App(){
         options={{
           headerTitle:()=> <Header name="Common Job Portals"/>,
           headerStyle:{
-            height:150,
+            height:100,
             borderBottomLeftRadius:30,
             borderBottomRightRadius:50,
             backgroundColor:'#00e4d0',
@@ -63,17 +73,18 @@ function App(){
         options={{
           headerTitle:()=> <Header name="Common Job Portals"/>,
           headerStyle:{
-            height:150,
-            borderBottomLeftRadius:30,
+            height:100,
+            borderBottomLeftRadius:50,
             borderBottomRightRadius:50,
             backgroundColor:'#00e4d0',
             shadowColor:'#000',
             elevation:25
           }
+          
         }}
         />
 
-<Stack.Screen 
+        <Stack.Screen 
         name="Registration" 
         component={JobSeekerRegistration}
         options={{
@@ -87,6 +98,25 @@ function App(){
             elevation:25
           }
         }}
+        />
+
+        <Stack.Screen 
+        name="JobProfile" 
+        component={JobProfileScreen}
+        
+        options={{
+          headerTitle:()=> <Header name="JobProfileScreen"/>,
+          headerStyle:{
+            height:150,
+            borderBottomLeftRadius:30,
+            borderBottomRightRadius:50,
+            backgroundColor:'#00e4d0',
+            shadowColor:'#000',
+            elevation:25
+          }
+        }}
+        
+    
         />
 
         {/* //employer Screen start */}
@@ -139,6 +169,23 @@ function App(){
         />
 
         <Stack.Screen 
+        name="postJob" 
+        component={PostJob}
+        options={{
+          headerTitle:()=> <Header name="post job"/>,
+          headerStyle:{
+            height:150,
+            borderBottomLeftRadius:30,
+            borderBottomRightRadius:50,
+            backgroundColor:'#00e4d0',
+            shadowColor:'#000',
+            elevation:25
+          }
+        }}
+        />
+
+        {/* AdminScreens */}
+        <Stack.Screen 
         name="AdminLogin" 
         component={AdminLogin}
         options={{
@@ -157,6 +204,54 @@ function App(){
         <Stack.Screen 
         name="AdminHome" 
         component={AdminHomeScreen}
+        options={{
+          headerTitle:()=> <Header name="Admin Home"/>,
+          headerStyle:{
+            height:150,
+            borderBottomLeftRadius:30,
+            borderBottomRightRadius:50,
+            backgroundColor:'#00e4d0',
+            shadowColor:'#000',
+            elevation:25
+          }
+        }}
+        />
+
+      <Stack.Screen 
+        name="ActiveJobsScreen" 
+        component={ActiveJobsScreen}
+        options={{
+          headerTitle:()=> <Header name="Admin Home"/>,
+          headerStyle:{
+            height:150,
+            borderBottomLeftRadius:30,
+            borderBottomRightRadius:50,
+            backgroundColor:'#00e4d0',
+            shadowColor:'#000',
+            elevation:25
+          }
+        }}
+        />
+
+      <Stack.Screen 
+        name="JobSeekerListScreen" 
+        component={JobSeekerListScreen}
+        options={{
+          headerTitle:()=> <Header name="Admin Home"/>,
+          headerStyle:{
+            height:150,
+            borderBottomLeftRadius:30,
+            borderBottomRightRadius:50,
+            backgroundColor:'#00e4d0',
+            shadowColor:'#000',
+            elevation:25
+          }
+        }}
+        />
+
+        <Stack.Screen 
+        name="EmployerListScreen" 
+        component={EmployerListScreen}
         options={{
           headerTitle:()=> <Header name="Admin Home"/>,
           headerStyle:{

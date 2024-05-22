@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
 import { db } from '../../config'; // Assuming you have exported db from your config file
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, doc, setDoc } from 'firebase/firestore';
 
-export default function EmployerRegistration({navigation}) {
+export default function EmployerRegistration({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -11,12 +11,19 @@ export default function EmployerRegistration({navigation}) {
 
   const registerUser = async (email, password, firstName, lastName) => {
     try {
-      const docRef = await addDoc(collection(db, 'employer'), {
+      // Create a new document in the employers collection with an auto-generated ID
+      const docRef = doc(collection(db, 'employers'));
+      
+      // Set the document with the employer details including the document ID as employerId
+      await setDoc(docRef, {
+        employerId: docRef.id,
         email: email,
         password: password,
         firstName: firstName,
         lastName: lastName,
+        createdAt: new Date(),
       });
+
       console.log('Document written with ID: ', docRef.id);
       alert('Registration successful!');
       navigation.navigate('EmpLogin');

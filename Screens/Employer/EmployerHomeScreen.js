@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, ActivityIndicator, Alert } from 'react-native';
 import { firebase } from '../../config';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function EmployerHomeScreen() {
+export default function EmployerHomeScreen({navigation}) {
   const [firstName, setFirstName] = useState('');
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+
 
 //   useEffect(() => {
 //     // const fetchUserData = async () => {
@@ -36,11 +39,34 @@ export default function EmployerHomeScreen() {
 //     );
 //   }
 
+// useEffect(() => {
+//   // Assume user data is stored in some state or context
+//   // If no user is logged in, navigate to the Login screen
+//   if (!user) {
+//     navigation.navigate('Login');
+//   }
+// }, [user]);
+
+// const logoutUser = () => {
+//   setUser(null);
+//   navigation.navigate('Login');
+// };
+
+
+
   return (
     <SafeAreaView style={styles.container}>
+
+      <TouchableOpacity style={styles.button} onPress={logoutUser}>
+        <Text style={styles.buttonText}>Logout</Text>
+      </TouchableOpacity>
+
       <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
         {/* Hello, {firstName} */} Employer HomeScreen
       </Text>
+      <TouchableOpacity>
+        <Text onPress={()=>navigation.navigate('postJob')}>post job</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }

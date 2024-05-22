@@ -1,13 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import{View,Text,TouchableOpacity,TextInput,StyleSheet} from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import { firebase } from '../../config';
+import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
+import auth from '../../config';
 
 
  export default function Login() {
     const navigation=useNavigation()
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
+
+    const checkIfLoggedIn = () => {
+        onAuthStateChanged(auth,(user) => {
+            if(user) {
+               navigation.navigate('Dashboard')
+            }
+        })
+    }
+
+    useEffect(() => {
+        checkIfLoggedIn()
+    },[])
   
     loginUser=async(email,password)=>{
         try{
@@ -54,11 +68,7 @@ import { firebase } from '../../config';
                     Don't have an account?Register Now
                 </Text>
 
-                <Text style={{fontWeight:'bold',fontSize:16}}
-                onPress={()=>navigation.navigate('EmpReg')}
-                >
-                    Employer Register
-                </Text>
+               
                 <Text style={{fontWeight:'bold',fontSize:16}}
                 onPress={()=>navigation.navigate('EmpLogin')}
                 >

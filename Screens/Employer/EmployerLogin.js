@@ -10,7 +10,7 @@ export default function EmployerLogin({ navigation }) {
   const loginUser = async () => {
     try {
       // Check if the email exists in the employer collection
-      const employerQuery = query(collection(db, 'employer'), where('email', '==', email));
+      const employerQuery = query(collection(db, 'employers'), where('email', '==', email));
       const employerSnapshot = await getDocs(employerQuery);
 
       if (!employerSnapshot.empty) {
@@ -55,6 +55,12 @@ export default function EmployerLogin({ navigation }) {
       <TouchableOpacity onPress={loginUser} style={styles.button}>
         <Text style={{ fontWeight: 'bold', fontSize: 22 }}>Login</Text>
       </TouchableOpacity>
+
+      <Text style={{fontWeight:'bold',fontSize:16,paddingTop:20}}
+                onPress={()=>navigation.navigate('EmpReg')}
+                >
+                    Employer Register
+                </Text>
     </View>
   );
 }
