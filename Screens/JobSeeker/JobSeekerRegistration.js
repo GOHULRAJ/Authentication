@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
-import { firebase } from '../../config';
+import { firebase} from '../../config';
 
 export default function Registration() {
   const [email, setEmail] = useState('');
@@ -16,9 +16,10 @@ export default function Registration() {
         url: 'https://job-portal-b8e90.firebaseapp.com',
       });
 
+      const userId=authUser.user.uid;
       const jobSeekerId = firebase.firestore().collection('jobSeeker').doc().id; // Generate unique jobSeeker_id
-      await firebase.firestore().collection('jobSeeker').doc(jobSeekerId).set({
-        jobSeeker_id: jobSeekerId, // Add jobSeeker_id to Firestore
+      await firebase.firestore().collection('jobSeeker').doc(userId).set({
+        jobSeeker_id: userId, // Add jobSeeker_id to Firestore
         firstName,
         lastName,
         email,

@@ -3,6 +3,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { useState,useEffect } from "react";
 import { firebase } from "./config";
 import 'react-native-gesture-handler';
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 //user defined components
@@ -28,7 +30,9 @@ import EmployerListScreen from "./Screens/Admin/EmployerListScreen";
 import JobProfileScreen from "./Screens/JobSeeker/JobProfileScreen";
 
 
-const Stack=createStackNavigator();
+
+const Stack=createNativeStackNavigator();
+const Drawer=createDrawerNavigator();
 
 function App(){
   const [initializing, setInitializing]=useState(true);
@@ -99,6 +103,8 @@ function App(){
           }
         }}
         />
+
+      
 
         <Stack.Screen 
         name="JobProfile" 
@@ -266,18 +272,19 @@ function App(){
         />
 
 
-
       </Stack.Navigator>
+
+      
     )
   }
 
   return(
-    <Stack.Navigator>
-      <Stack.Screen 
+    <Drawer.Navigator>
+      <Drawer.Screen 
         name="Dashboard" 
         component={JobSeekerHomeScreen}
         options={{
-          headerTitle:()=> <Header name="JobSeekerHomeScreen"/>,
+          headerTitle:()=> <Header name="Gs JobPortal"/>,
           headerStyle:{
             height:150,
             borderBottomLeftRadius:30,
@@ -288,7 +295,14 @@ function App(){
           }
         }}
         />
-    </Stack.Navigator>
+        <Drawer.Screen
+          name="Login"
+          component={JobSeekerLogin}
+          
+        />
+    </Drawer.Navigator>
+    
+
   )
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 
+
 export default function JobProfileScreen({ route, navigation }) {
   const { job } = route.params;
 
